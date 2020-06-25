@@ -147,36 +147,47 @@ var todoList = [];
 })();
 
 function addTodo() {
+    var validForm = true;
     var text = document.getElementById("inputTaskName").value;
-    var date = document.getElementsByClassName("datepicker")[0].value;
-    //console.log(new Date(date.split("-")).getTime());
-    var dateTS = new Date(date.split("-")).getTime();
-    var nowTS = new Date().getTime();
-    var iid = document.getElementById("important-select");
-    var important = parseInt(iid.options[iid.selectedIndex].value);
-    var uid = document.getElementById("urgent-select");
-    var urgent = parseInt(uid.options[uid.selectedIndex].value);
-    var todo = {
-        text: text,
-        date: dateTS,
-        createTime: nowTS,
-        completed: false,
-        important: important,
-        urgent: urgent,
-    };
-    if (localStorage.getItem("todo")){
-        todos = JSON.parse(localStorage.getItem("todo"));
-    } else {
-        todos = []
+    if (text === ""){
+        showMsg("请填写内容");
+        validForm = false;
     }
-    todos.push(todo);
-    //console.log(todos);
-    localStorage.setItem("todo", JSON.stringify(todos));
-    var newTodo = JSON.stringify({todo: JSON.stringify(todos)});
-    uploadTodo();
-    setTimeout(function () {
-        window.location.replace("index.html");
-    }, 500);
+    var date = document.getElementsByClassName("datepicker")[0].value;
+    if (date === ""){
+        showMsg("请填写时间");
+        validForm = false;
+    }
+    if (validForm){
+        //console.log(new Date(date.split("-")).getTime());
+        var dateTS = new Date(date.split("-")).getTime();
+        var nowTS = new Date().getTime();
+        var iid = document.getElementById("important-select");
+        var important = parseInt(iid.options[iid.selectedIndex].value);
+        var uid = document.getElementById("urgent-select");
+        var urgent = parseInt(uid.options[uid.selectedIndex].value);
+        var todo = {
+            text: text,
+            date: dateTS,
+            createTime: nowTS,
+            completed: false,
+            important: important,
+            urgent: urgent,
+        };
+        if (localStorage.getItem("todo")){
+            todos = JSON.parse(localStorage.getItem("todo"));
+        } else {
+            todos = []
+        }
+        todos.push(todo);
+        console.log(todos);
+        localStorage.setItem("todo", JSON.stringify(todos));
+        var newTodo = JSON.stringify({todo: JSON.stringify(todos)});
+        uploadTodo();
+        setTimeout(function () {
+            window.location.replace("index.html");
+        }, 1000);
+    }
 }
 
 window.onload = function () {

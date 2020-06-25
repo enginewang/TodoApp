@@ -78,7 +78,7 @@ function loadTodo(username) {
             flush();
         }
     };
-    xhttp.open("GET", "http://127.0.0.1:1323/api/username/" + username.toString(), true);
+    xhttp.open("GET", "http://167.179.66.112:1323/api/username/" + username.toString(), true);
     xhttp.send();
 }
 
@@ -411,5 +411,7 @@ function closeSpine() {
 }
 
 window.onload = function () {
-    flushFromServer();
+    //flushFromServer();
+    flush();
+    showSaying();
 };

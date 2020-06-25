@@ -375,12 +375,12 @@ td:hover {
     width: 70vw;
     height: 6vh;
     border: none;
-    border-radius: .5em;
+    border-radius: 20px;
     background-color: white;
     color: var(--theme-color);;
     outline: none;
-    font-size: large;
-    margin-top: 0.8em;
+    font-size: 2vh;
+    margin-top: 2vh;
 }
 
 #inputTaskName {

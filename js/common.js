@@ -102,6 +102,7 @@ function flushLang() {
 function uploadTodo() {
     var todos;
     //alert(localStorage.getItem("todo"));
+    // [{"text":"1","date":1591891200000,"createTime":1593075977363,"completed":false,"important":0,"urgent":0}]
     if (localStorage.getItem("todo")) {
         todos = JSON.parse(localStorage.getItem("todo"))
     } else {
@@ -112,10 +113,11 @@ function uploadTodo() {
     let xmlHttp = new XMLHttpRequest();
     xmlHttp.onreadystatechange = function () {
         if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
-            //console.log(xmlHttp.responseText);
+            //alert(xmlHttp.responseText);
+            console.log(xmlHttp.responseText);
         }
     };
-    xmlHttp.open("post", "http://127.0.0.1:1323/api/updateTodo/" + username.toString());
+    xmlHttp.open("post", "http://167.179.66.112:1323/api/updateTodo/" + username.toString());
     xmlHttp.setRequestHeader("content-type", "application/json");
     xmlHttp.send(newTodo);
 }
