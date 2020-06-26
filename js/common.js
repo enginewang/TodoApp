@@ -117,7 +117,7 @@ function uploadTodo() {
             console.log(xmlHttp.responseText);
         }
     };
-    xmlHttp.open("post", "http://167.179.66.112:1323/api/updateTodo/" + username.toString());
+    xmlHttp.open("post", "https://yicheng.me/todoapi/updateTodo/" + username.toString());
     xmlHttp.setRequestHeader("content-type", "application/json");
     xmlHttp.send(newTodo);
 }
@@ -132,6 +132,15 @@ function showMsg(text) {
         setTimeout(function () {
             document.getElementById("msg-bar").classList.remove('disappear');
         }, 1000);
+    }, 2000)
+}
+
+function showBubble(text) {
+    document.getElementById("bubble-text").innerHTML = text;
+    document.getElementById("bubble").style.visibility = "visible";
+    setTimeout(function () {
+        document.getElementById("bubble").style.visibility = "hidden";
+        document.getElementById("bubble-text").innerHTML = "";
     }, 2000)
 }
 
@@ -220,9 +229,11 @@ function changeTheme() {
     if (theme === "dark") {
         setBlueTheme();
         localStorage.setItem("theme", "blue");
+        showBubble("切换到了蓝色主题")
     } else {
         setDarkTheme();
         localStorage.setItem("theme", "dark");
+        showBubble("切换到了夜间主题")
     }
 }
 
